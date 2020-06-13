@@ -32,3 +32,8 @@ if(ds18b20_GetSign(raw_temper)) c='-';        //определяем знак
  temper = ds18b20_Convert(raw_temper);        //достаем  занчение температуры из присланных байт            
  temrez=(uint8_t)(floor(temper*10));         //округляем для получения десятой  0,1  0,2        
  snprintf(str1,60,"%c%d.%d'C",c, ((uint8_t)(floor(temper))),temrez%10);  //сливаем в буфер +27.2'C          
+
+
+Примечание:		
+в функции DelayMicro //ds18b20.c		
+micros *= (SystemCoreClock / 1000000) / 9;            делить на 9 помеянть кратно system core  9ка для 72МГц		
